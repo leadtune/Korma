@@ -338,7 +338,7 @@
 
 (defn sql-limit-offset [{:keys [limit offset] :as query}]
   (let [limit-sql (when limit
-                    (str " LIMIT " limit))
+                    (str " FETCH FIRST " limit " ROWS ONLY"))
         offset-sql (when offset
                      (str " OFFSET " offset))]
     (update-in query [:sql-str] str limit-sql offset-sql)))
